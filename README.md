@@ -2,6 +2,17 @@
 A web based music player with built in Equalizer
 
 # React + TypeScript + Vite
+```js
+npm run dev
+or
+// Make sure serve is installed using
+npm install -g serve
+//
+npm run build
+serve -s dist
+
+
+```
 
 This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
 
