@@ -187,17 +187,17 @@ export default function MusicPlayerApp() {
 
   // EQ UI values
   const [showEQ, setShowEQ] = useState(false);
-  const [gain, setGain] = useState(100); // 0..200 (%)
-  const [bass, setBass] = useState(0);   // -15..15 dB
-  const [midG, setMidG] = useState(0);   // -15..15 dB
-  const [treble, setTreble] = useState(0);// -15..15 dB
+  const [gain, setGain] = useState(100); 
+  const [bass, setBass] = useState(0);   
+  const [midG, setMidG] = useState(0);   
+  const [treble, setTreble] = useState(0);
 
   const currentTrack = useMemo(
     () => (currentIndex == null ? undefined : playlist[currentIndex]),
     [playlist, currentIndex]
   );
 
-  // ----- Refs mirroring state (avoid stale closures in events)
+
   const playlistRef = useRef<TrackMeta[]>([]);
   const indexRef    = useRef<number | null>(null);
   const playingRef  = useRef(false);
@@ -418,7 +418,6 @@ export default function MusicPlayerApp() {
     playIndex(ni);
   }
 
-  // Remove track and keep playback stable
   function removeTrack(idx: number) {
     const pl = [...playlistRef.current];
     if (idx < 0 || idx >= pl.length) return;
@@ -542,7 +541,7 @@ export default function MusicPlayerApp() {
                   {currentTrack?.title || "Add songs to begin"}
                 </h2>
 
-                {/* >>> Replaced: labeled only when known; tooltip always labeled */}
+                {/* >>> labeled only when known; tooltip always labeled */}
                 {(() => {
                   const meta = buildMetaLine(currentTrack);
                   return (
@@ -551,7 +550,7 @@ export default function MusicPlayerApp() {
                     </p>
                   );
                 })()}
-                {/* <<< End replacement */}
+                {/* <<< End */}
               </div>
             </div>
 
@@ -567,7 +566,7 @@ export default function MusicPlayerApp() {
               </div>
             </div>
 
-            {/* Transport + Shuffle/Repeat (with badges) */}
+            {/* Transport + Shuffle/Repeat */}
             <div className="mt-6 flex flex-wrap items-center justify-center gap-4">
               <button onClick={handlePrev} disabled={!playlist.length} className="relative h-11 w-11 rounded-full bg-neutral-800 grid place-items-center disabled:opacity-50" aria-label="Previous">
                 <IconPrev className="h-5 w-5" />
@@ -671,7 +670,7 @@ export default function MusicPlayerApp() {
 
             <audio ref={audioRef} preload="metadata" />
 
-            {/* Add songs (matched style) */}
+            {/* Add songs*/}
             <div className="mt-8">
               <label className="cursor-pointer inline-flex items-center gap-2 px-5 py-2 rounded-full bg-neutral-800 border border-white/10 hover:bg-neutral-700 transition">
                 <input type="file" accept="audio/*" multiple className="hidden"
@@ -682,7 +681,7 @@ export default function MusicPlayerApp() {
           </div>
         </section>
 
-        {/* Library (wider, with tooltips) */}
+        {/* Library */}
         <aside>
           <div className="rounded-3xl border border-white/10 bg-neutral-900/70 shadow-xl p-6">
             <h3 className="text-sm font-semibold mb-3">Library</h3>
@@ -723,7 +722,7 @@ export default function MusicPlayerApp() {
                           {t.title}
                         </div>
 
-                        {/* >>> Replaced: labeled only when known; tooltip always labeled */}
+                        {/* >>>  labeled only when known; tooltip always labeled */}
                         {(() => {
                           const meta = buildMetaLine(t);
                           return (
@@ -732,7 +731,7 @@ export default function MusicPlayerApp() {
                             </div>
                           );
                         })()}
-                        {/* <<< End replacement */}
+                        {/* <<< End  */}
                       </div>
 
                       <button onClick={() => removeTrack(idx)} className="shrink-0 h-8 w-8 rounded-full bg-neutral-800 grid place-items-center" aria-label="Remove">🗑️</button>
